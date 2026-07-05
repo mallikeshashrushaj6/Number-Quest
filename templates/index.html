@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Number Quest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css"/>
+</head>
+<body>
+  <div class="scanlines"></div>
+  <div class="grid-bg"></div>
+
+  <div class="container">
+
+    <!-- HEADER -->
+    <header>
+      <div class="logo-wrap">
+        <span class="logo-bracket">[</span>
+        <h1>NUMBER<span class="accent">QUEST</span></h1>
+        <span class="logo-bracket">]</span>
+      </div>
+      <p class="tagline">// GUESS THE SECRET INTEGER · POWERED BY FLASK + PANDAS API</p>
+    </header>
+
+    <!-- SETUP PANEL -->
+    <section id="setup-panel" class="panel">
+      <div class="panel-header">
+        <span class="panel-label">INITIALIZE GAME</span>
+        <span class="blink-dot"></span>
+      </div>
+      <div class="setup-grid">
+        <div class="input-group">
+          <label for="player-name">PLAYER_NAME</label>
+          <input type="text" id="player-name" placeholder="Enter codename..." maxlength="20"/>
+        </div>
+        <div class="input-group">
+          <label>DIFFICULTY</label>
+          <div class="diff-buttons">
+            <button class="diff-btn" data-diff="easy">EASY<span>1–50 · 10 tries</span></button>
+            <button class="diff-btn active" data-diff="medium">MEDIUM<span>1–100 · 7 tries</span></button>
+            <button class="diff-btn" data-diff="hard">HARD<span>1–500 · 7 tries</span></button>
+            <button class="diff-btn" data-diff="expert">EXPERT<span>1–1000 · 5 tries</span></button>
+          </div>
+        </div>
+      </div>
+      <button id="start-btn" class="cta-btn">▶ START GAME</button>
+    </section>
+
+    <!-- GAME PANEL -->
+    <section id="game-panel" class="panel hidden">
+      <div class="game-header">
+        <div class="game-info">
+          <span id="info-player" class="info-tag"></span>
+          <span id="info-diff"   class="info-tag"></span>
+          <span id="info-range"  class="info-tag"></span>
+        </div>
+        <button id="hint-btn" class="small-btn">💡 HINT</button>
+      </div>
+
+      <div id="hint-box" class="hint-box hidden"></div>
+
+      <div class="attempts-bar">
+        <span class="bar-label">ATTEMPTS</span>
+        <div id="attempt-dots" class="dot-row"></div>
+        <span id="attempts-count" class="bar-count">0 / 0</span>
+      </div>
+
+      <div class="guess-row">
+        <input type="number" id="guess-input" placeholder="Enter number..." />
+        <button id="guess-btn" class="cta-btn">SUBMIT</button>
+      </div>
+
+      <div id="feedback" class="feedback-box"></div>
+
+      <div id="history-wrap" class="history-wrap">
+        <div class="panel-label">GUESS LOG</div>
+        <div id="history-list" class="history-list"></div>
+      </div>
+
+      <div id="result-overlay" class="result-overlay hidden">
+        <div class="result-card">
+          <div id="result-icon"></div>
+          <div id="result-title"></div>
+          <div id="result-detail"></div>
+          <button id="play-again-btn" class="cta-btn">↺ PLAY AGAIN</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEADERBOARD PANEL -->
+    <section id="leaderboard-panel" class="panel">
+      <div class="panel-header">
+        <span class="panel-label">LEADERBOARD & STATS</span>
+<button id="refresh-lb" class="small-btn" onclick="refreshLeaderboard()">⟳ REFRESH</button>
+<button class="small-btn" onclick="clearLeaderboard()" style="border-color:#ff3366;color:#ff3366;margin-left:8px;">🗑 CLEAR ALL</button>
+      </div>
+      <div id="stats-row" class="stats-row"></div>
+      <table id="lb-table">
+        <thead>
+          <tr><th>#</th><th>PLAYER</th><th>BEST ATTEMPTS</th></tr>
+        </thead>
+        <tbody id="lb-body">
+          <tr><td colspan="3" class="empty-row">No records yet. Play to appear!</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>
+      <span>Flask · Pandas · REST API · Python</span>
+    </footer>
+
+  </div>
+
+<script src="/static/js/game.js?v=2"></script>
+</body>
+</html>
